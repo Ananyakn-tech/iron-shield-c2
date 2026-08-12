@@ -76,5 +76,8 @@ npm start
 - When a route is requested between two points, Dijkstra's algorithm computes the shortest path over the map graph and returns it to the client for rendering.
 - JWT-based auth restricts dashboard access to authenticated operators.
 
+## Author
+**Ananya K N**
+
 ## License
 MIT
