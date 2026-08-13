@@ -1,83 +1,48 @@
-# TactiTrack C2
-Real-time battlefield command and control dashboard for visualizing unit positions, planning optimal routes, and coordinating operations on a live map.
+# TactiTrack-C2
 
-🔗 Live demo: https://tactitrack-c2.netlify.app
+A real-time military command dashboard I built for tracking units, detecting threats, and coordinating missions. Built this as a portfolio project to learn full-stack development with real-time features.
 
-## Features
-- Real-time unit tracking on an interactive map (Leaflet.js)
-- Live updates across all connected clients via WebSockets (Socket.IO)
-- Optimal route computation between units/waypoints using Dijkstra's algorithm
-- Secure authentication with JWT
-- Persistent data storage with MongoDB
-- Command dashboard for monitoring and coordinating multiple units simultaneously
+**Live:** https://tactitrack-c2.netlify.app/
 
-## Tech Stack
-**Frontend:** JavaScript, Leaflet.js, Socket.IO Client
-**Backend:** Node.js, Express, Socket.IO, MongoDB, JWT
-**Deployment:** Netlify (frontend)
+## What it does
 
-## Project Structure
-```
-TactiTrack-C2/
-├── backend/     # Express server, Socket.IO, auth, Dijkstra routing logic, MongoDB models
-├── frontend/    # Leaflet map UI, dashboard, real-time client
-├── netlify.toml
-└── .gitignore
-```
+- Units move on a live map in real time using WebSockets
+- Route finder calculates shortest path between any two units using Dijkstra's algorithm
+- Alerts system with priority levels — critical threats show first
+- Commander and Operator login roles using JWT
+- Dark tactical UI with boot animation
 
-## Getting Started
+## Tech used
 
-### Prerequisites
-- Node.js (v16+)
-- MongoDB (local instance or Atlas connection string)
+- Frontend — HTML, CSS, JavaScript, Leaflet.js for maps
+- Backend — Node.js, Express.js
+- Real-time — Socket.IO
+- Database — MongoDB
+- Auth — JWT + bcrypt
 
-### Installation
+## How to run
 
-1. Clone the repo
-```
-git clone https://github.com/ananya-kn/TactiTrack-C2.git
-cd TactiTrack-C2
-```
+```bash
+# Frontend - open in VS Code with Live Server
+open frontend/index.html
 
-2. Install backend dependencies
-```
+# Backend
 cd backend
 npm install
+npm run dev
 ```
 
-3. Install frontend dependencies
-```
-cd ../frontend
-npm install
-```
+## Login credentials
 
-4. Set up environment variables in `backend/.env`
-```
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-PORT=5000
-```
+| Role | Username | Password |
+|------|----------|----------|
+| Commander | commander | cmd@1234 |
+| Operator | alpha1 | alpha@1 |
 
-5. Run the backend
-```
-cd backend
-npm start
-```
+## How it works
 
-6. Run the frontend
-```
-cd frontend
-npm start
-```
+The unit positions update every 3 seconds using Socket.IO — this simulates a real GPS IoT device sending location data. The route finder uses Dijkstra's algorithm on a weighted graph where each unit is a node and edge weights are distances in km.
 
-## How It Works
-- Units/agents send location updates to the backend via Socket.IO.
-- The backend broadcasts updates to all connected dashboards in real time.
-- When a route is requested between two points, Dijkstra's algorithm computes the shortest path over the map graph and returns it to the client for rendering.
-- JWT-based auth restricts dashboard access to authenticated operators.
+## Built by
 
-## Author
-**Ananya K N**
-
-## License
-MIT
+Ananya K N
